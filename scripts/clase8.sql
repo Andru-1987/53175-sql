@@ -79,3 +79,19 @@ Identificar en el modelo de una applicacion de reservas las tablas que serían d
 
 -- Dar informacion sobre la relacion cardinal de RESTAURANTE -- DUEÑO
 
+-- Data extra: 
+La integridad relacional en MySQL se refiere a la garantía de que las relaciones entre las tablas en una base de datos se mantienen consistentes y que no se producen acciones que puedan comprometer la integridad de los datos. MySQL proporciona varias herramientas y mecanismos para implementar y mantener la integridad relacional en una base de datos:
+
+    Constraints (Restricciones): MySQL permite definir diferentes tipos de restricciones para mantener la integridad de los datos, incluyendo:
+        PRIMARY KEY: Define un campo o conjunto de campos como clave primaria, asegurando que los valores sean únicos e indexados.
+        FOREIGN KEY: Establece una relación entre dos tablas, garantizando que los valores en la columna referenciada existan en la tabla principal.
+        UNIQUE: Asegura que los valores en una columna o conjunto de columnas sean únicos.
+        NOT NULL: Evita que los valores en una columna sean nulos, asegurando que siempre contengan datos.
+
+    Triggers (Disparadores): Los triggers son bloques de código SQL que se ejecutan automáticamente cuando ocurren ciertos eventos, como inserciones, actualizaciones o eliminaciones en una tabla. Se pueden utilizar para realizar validaciones adicionales o acciones específicas para mantener la integridad de los datos.
+
+    Transactions (Transacciones): MySQL soporta transacciones, que permiten agrupar una serie de operaciones SQL en una unidad lógica de trabajo. Las transacciones garantizan la atomicidad, consistencia, aislamiento y durabilidad (propiedades ACID), lo que ayuda a mantener la integridad de los datos durante operaciones complejas que afectan a múltiples tablas.
+
+    Foreign Key Constraints (Restricciones de Clave Externa): MySQL permite definir restricciones de clave externa utilizando la sintaxis FOREIGN KEY, lo que garantiza que los valores en una columna de una tabla (clave externa) hagan referencia a los valores existentes en otra tabla (clave primaria).
+
+    Índices (Indexes): Los índices en MySQL pueden mejorar el rendimiento de las consultas, pero también pueden utilizarse para garantizar la integridad de los datos al imponer restricciones únicas o de clave primaria en una tabla.
