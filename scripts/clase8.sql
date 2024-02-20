@@ -1,4 +1,46 @@
 -- TIPOS DE TABLA
+
+1. **MyISAM**:
+   - Es el motor de almacenamiento predeterminado en versiones antiguas de MySQL.
+   - Ofrece una alta velocidad y eficiencia en las operaciones de lectura.
+   - No soporta transacciones ACID (Atomicidad, Consistencia, Aislamiento, Durabilidad) ni claves foráneas.
+   - Es adecuado para aplicaciones que requieren un alto rendimiento en operaciones de lectura, como sitios web estáticos o aplicaciones de análisis de datos.
+
+2. **MEMORY**:
+   - Almacena toda la tabla en la memoria RAM del servidor.
+   - Es extremadamente rápido para operaciones de lectura y escritura, ya que no implica acceso a disco.
+   - Ideal para tablas temporales o pequeñas tablas de caché que necesitan un acceso rápido a los datos.
+
+3. **InnoDB y BDB**:
+   - Son motores de almacenamiento transaccionales que cumplen con el estándar ACID.
+   - Soportan claves foráneas y ofrecen características como bloqueo a nivel de fila para mejorar la concurrencia.
+   - InnoDB es el motor de almacenamiento predeterminado en MySQL desde la versión 5.5.
+   - BDB (BerkeleyDB) fue otro motor transaccional disponible en versiones anteriores, pero ha sido descontinuado en versiones recientes.
+
+4. **EXAMPLE**:
+   - Es un motor de almacenamiento simple que se utiliza principalmente para propósitos de prueba o demostración.
+   - No es adecuado para entornos de producción debido a su falta de funcionalidades avanzadas y su bajo rendimiento.
+
+5. **NDB Cluster**:
+   - Es un motor de almacenamiento diseñado para MySQL Cluster, una solución de base de datos distribuida y altamente disponible.
+   - Proporciona escalabilidad horizontal y alta disponibilidad al distribuir los datos en varios nodos.
+
+6. **ARCHIVE**:
+   - Está optimizado para tablas de tipo de registro, donde la mayoría de las operaciones son de lectura y escritura se realiza de forma esporádica.
+   - Ofrece una compresión eficiente de datos para ahorrar espacio en disco.
+   - No es adecuado para tablas con muchas operaciones de actualización o eliminación.
+
+7. **CSV**:
+   - Almacena los datos en formato CSV (valores separados por comas), lo que permite importar y exportar fácilmente datos desde y hacia archivos CSV.
+   - Es útil para integrar datos de MySQL con otras aplicaciones que trabajan con archivos CSV.
+
+8. **FEDERATED**:
+   - Permite acceder y manipular datos en una base de datos remota como si estuvieran en una tabla local.
+   - Facilita la integración y la federación de datos entre múltiples servidores de bases de datos MySQL.
+
+Cada tipo de motor de almacenamiento tiene sus propias características y casos de uso específicos, por lo que es importante elegir el más adecuado según los requisitos y el diseño de la aplicación.
+
+
 -- FACT TABLES
 -- TRANSAC TABLES
 -- DIMENSION TABLES
@@ -95,3 +137,8 @@ La integridad relacional en MySQL se refiere a la garantía de que las relacione
     Foreign Key Constraints (Restricciones de Clave Externa): MySQL permite definir restricciones de clave externa utilizando la sintaxis FOREIGN KEY, lo que garantiza que los valores en una columna de una tabla (clave externa) hagan referencia a los valores existentes en otra tabla (clave primaria).
 
     Índices (Indexes): Los índices en MySQL pueden mejorar el rendimiento de las consultas, pero también pueden utilizarse para garantizar la integridad de los datos al imponer restricciones únicas o de clave primaria en una tabla.
+
+
+
+-- Integridad referencial:
+-- LINK : https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html
