@@ -45,13 +45,83 @@
 
 
 
-
 -- Un poco de ptractica
-/*
 
-    Muestre first_name y last_name de los usuarios que tengan mail ‘webnode.com’
-    Muestre todos los datos de los juegos que han finalizado.
-    Muestre los distintos juegos que tuvieron una votación mayor a 9.
-    Muestre nombre, apellido y mail de los usuarios que juegan al juego FIFA 22.
+    -- Muestre first_name y last_name de los usuarios que tengan mail 'webnode.com'
+    SELECT 
+            first_name
+        ,   last_name
+--      ,   email
+        FROM coderhouse_gamers.SYSTEM_USER
+    WHERE email LIKE '%webnode.com' ; 
 
-*/
+    -- Muestre todos los datos de los juegos que han finalizado, los usuarios con email de 'myspace'.
+
+
+    SELECT 
+       G.*
+    FROM coderhouse_gamers.PLAY AS P
+    RIGHT JOIN coderhouse_gamers.SYSTEM_USER AS SU
+        ON P.id_system_user = SU.id_system_user
+    RIGHT JOIN coderhouse_gamers.GAME AS G
+        ON G.id_game = P.id_game
+    WHERE TRUE
+    AND P.completed = 1
+    AND SU.email LIKE '%@myspace.com';
+
+
+    -- Muestre los distintos juegos que tuvieron una votación mayor a 9.
+
+
+    SELECT  
+        name
+    FROM coderhouse_gamers.GAME
+    WHERE id_game IN
+        (
+            SELECT 
+            DISTINCT id_game
+            FROM coderhouse_gamers.VOTE
+            WHERE
+                value > 9
+        )
+    ;
+
+
+    -- Muestre nombre, apellido y mail de los usuarios que juegan al juego FIFA 22.
+
+        -- <JOINS VERSION> -- 
+            SELECT 
+                SU.first_name AS nombre,
+                SU.last_name AS apellido,
+                SU.email AS mail
+            FROM coderhouse_gamers.SYSTEM_USER AS SU
+            JOIN coderhouse_gamers.PLAY AS P 
+                ON SU.id_system_user = P.id_system_user
+            JOIN coderhouse_gamers.GAME AS G 
+                ON P.id_game = G.id_game
+            WHERE G.name LIKE '%FIFA 22%';
+
+        -- <SUBQUERY VERSION> -- 
+            SELECT 
+                SU.first_name   AS  nombre
+            ,   SU.last_name    AS  apellido
+            ,   SU.email        AS  mail
+            FROM coderhouse_gamers.SYSTEM_USER AS SU
+            WHERE id_system_user IN
+                (
+                SELECT 
+                    id_system_user
+                FROM coderhouse_gamers.PLAY AS P
+                WHERE EXISTS
+                    (SELECT 
+                        id_game
+                    FROM coderhouse_gamers.GAME AS G
+                    WHERE G.id_game = P.id_game
+                    AND G.name like '%FIFA 22%'));
+
+
+-- PARA  VERIFICAR LA PERFORMANCIA
+
+    -- SET profiling = 1;
+    -- SHOW PROFILES;
+    -- SHOW PROFILE FOR QUERY <Query_ID>;
