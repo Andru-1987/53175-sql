@@ -1,0 +1,62 @@
+[
+    {
+      "IDCLIENTE": 10,
+      "NOMBRE": "John Doe",
+      "TELEFONO": "1234567890",
+      "CORREO": "john@example.com"
+    },
+    {
+      "IDCLIENTE": 2,
+      "NOMBRE": "Jane Smith",
+      "TELEFONO": "9876543210",
+      "CORREO": "jane@example.com"
+    },
+    {
+      "IDCLIENTE": 3,
+      "NOMBRE": "Alice Johnson",
+      "TELEFONO": "5551234567",
+      "CORREO": "alice@example.com"
+    },
+    {
+      "IDCLIENTE": 4,
+      "NOMBRE": "Bob Brown",
+      "TELEFONO": "5559876543",
+      "CORREO": "bob@example.com"
+    },
+    {
+      "IDCLIENTE": 5,
+      "NOMBRE": "Emily Davis",
+      "TELEFONO": "4441234567",
+      "CORREO": "emily@example.com"
+    },
+    {
+      "IDCLIENTE": 6,
+      "NOMBRE": "Michael Wilson",
+      "TELEFONO": "3331234567",
+      "CORREO": "michael@example.com"
+    },
+    {
+      "IDCLIENTE": 7,
+      "NOMBRE": "Samantha Martinez",
+      "TELEFONO": "2221234567",
+      "CORREO": "samantha@example.com"
+    },
+    {
+      "IDCLIENTE": 8,
+      "NOMBRE": "David Rodriguez",
+      "TELEFONO": "1111234567",
+      "CORREO": "david@example.com"
+    },
+    {
+      "IDCLIENTE": 9,
+      "NOMBRE": "Jennifer Taylor",
+      "TELEFONO": "9991234567",
+      "CORREO": "jennifer@example.com"
+    },
+    {
+      "IDCLIENTE": 10,
+      "NOMBRE": "Christopher Lee",
+      "TELEFONO": "8881234567",
+      "CORREO": "christopher@example.com"
+    }
+  ]
