@@ -84,15 +84,15 @@ DER SIMPLIFICADO
 | correo           |        | idEmpleado (FK)       |        | telefono         |
 +------------------+        | idTipoReserva (FK)    |        +------------------+
                             | fecha                 |
-                            | cancelcion            |                  |
+                            | cancelacion           |                  |
                             +-----------------------+                  |
                                     |                                  |
                                     |                                  |
                                     v                                  v
 +------------------+        +------------------+             +-------------------+
-|     Empleado     |        |      Mesa        |             |     Dueño         |
+|     Empleado     |        |      Mesa        |             |     Dueno         |
 +------------------+        +------------------+             +-------------------+
-| idEmpleado (PK)  |        | idMesa (PK)      |             | idDueño (PK)      |
+| idEmpleado (PK)  |        | idMesa (PK)      |             | idDueno (PK)      |
 | nombre           |        | idRestaurante(FK)|             | nombre            |
 | telefono         |        | capacidad        |             | correo            |
 | correo           |        | disponible       |             | telefono          |
@@ -105,6 +105,25 @@ DER SIMPLIFICADO
                              | tipo              |
                              +-------------------+
 */
+
+-- GENERAR EL DDL
+
+DROP DATABASE IF EXISTS mozo_atr ; -- reserv_ar
+
+CREATE DATABASE mozo_atr;
+
+USE mozo_atr;
+
+-- Tabla RESERVA
+CREATE TABLE RESERVA (
+    IDRESERVA INT PRIMARY KEY AUTO_INCREMENT,
+    IDCLIENTE INT,
+    IDMESA INT,
+    IDEMPLEADO INT,
+    IDTIPORESERVA INT,
+    FECHA DATETIME,
+    CANCELACION DATETIME DEFAULT NULL
+);
 
 -- Tabla CLIENTE
 CREATE TABLE CLIENTE (
@@ -120,8 +139,7 @@ CREATE TABLE EMPLEADO (
     NOMBRE VARCHAR(100),
     TELEFONO VARCHAR(20),
     CORREO VARCHAR(100),
-    IDRESTAURANTE INT,
-    FOREIGN KEY (IDRESTAURANTE) REFERENCES RESTAURANTE(IDRESTAURANTE)
+    IDRESTAURANTE INT
 );
 
 -- Tabla DUEÑO
@@ -151,20 +169,38 @@ CREATE TABLE MESA (
     IDMESA INT PRIMARY KEY AUTO_INCREMENT,
     IDRESTAURANTE INT,
     CAPACIDAD INT,
-    DISPONIBLE BOOLEAN,
-    FOREIGN KEY (IDRESTAURANTE) REFERENCES RESTAURANTE(IDRESTAURANTE)
+    DISPONIBLE BOOLEAN
 );
 
--- Tabla RESERVA
-CREATE TABLE RESERVA (
-    IDRESERVA INT PRIMARY KEY AUTO_INCREMENT,
-    IDCLIENTE INT,
-    IDMESA INT,
-    IDEMPLEADO INT,
-    IDTIPORESERVA INT,
-    FECHA DATETIME,
-    FOREIGN KEY (IDCLIENTE) REFERENCES CLIENTE(IDCLIENTE),
-    FOREIGN KEY (IDMESA) REFERENCES MESA(IDMESA),
-    FOREIGN KEY (IDEMPLEADO) REFERENCES EMPLEADO(IDEMPLEADO),
-    FOREIGN KEY (IDTIPORESERVA) REFERENCES TIPORESERVA(IDTIPORESERVA)
-);
+
+
+-- FOREIGN KEYS DEFINITION
+
+-- EMPLEADO
+
+ALTER TABLE EMPLEADO
+    ADD CONSTRAINT FK_EMP_CLIENTE
+    FOREIGN KEY (IDRESTAURANTE) REFERENCES RESTAURANTE(IDRESTAURANTE);
+    
+-- MESA
+ALTER TABLE MESA
+    ADD CONSTRAINT FK_MESA_RESTAURANTE
+    FOREIGN KEY (IDRESTAURANTE) REFERENCES RESTAURANTE(IDRESTAURANTE);
+    
+-- RESERVAS
+
+ALTER TABLE RESERVA
+    ADD CONSTRAINT FK_RESERVA_CLIENTE
+    FOREIGN KEY (IDCLIENTE) REFERENCES CLIENTE(IDCLIENTE);
+
+ALTER TABLE RESERVA
+    ADD CONSTRAINT FK_RESERVA_MESA
+    FOREIGN KEY (IDMESA) REFERENCES MESA(IDMESA);
+
+ALTER TABLE RESERVA
+    ADD CONSTRAINT FK_RESERVA_EMPLEADO
+    FOREIGN KEY (IDEMPLEADO) REFERENCES EMPLEADO(IDEMPLEADO);
+    
+ALTER TABLE RESERVA
+    ADD CONSTRAINT FK_RESERVA_TIPORESERVA
+    FOREIGN KEY (IDTIPORESERVA) REFERENCES TIPORESERVA(IDTIPORESERVA);
