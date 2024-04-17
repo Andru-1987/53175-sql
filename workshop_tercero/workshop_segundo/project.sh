@@ -9,6 +9,7 @@ mysql \
 
 
 data=""
+
 for file in ./creacion_objetos/*
 do
 	echo "process start"
@@ -17,6 +18,7 @@ do
 		data+="source $file ; " 
 	fi
 done
+
 mysql -u root -panderson123! --host 127.0.0.1 --port 3306 -e "$data"
 mysql -u root -panderson123! --host 127.0.0.1 --port 3306 -e "show procedure status where db='mozo_atr'; \
 	show function status where db='mozo_atr'; \

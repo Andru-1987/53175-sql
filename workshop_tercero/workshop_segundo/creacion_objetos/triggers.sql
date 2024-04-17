@@ -22,13 +22,20 @@ AFTER INSERT ON CLIENTE
 FOR EACH ROW
 BEGIN
     INSERT INTO LOG_CAMBIOS (
-        tabla_afectada
-        accion
-        fecha
-        idcliente
-        usuario)
+         tabla_afectada
+        ,accion
+        ,fecha
+        ,idcliente
+        ,usuario
+        )
 
-    VALUES ('CLIENTE', 'INSERT', NOW() , NEW.IDCLIENTE, USER());
+    VALUES (
+      'CLIENTE'
+    , 'INSERT'
+    , NOW() 
+    , NEW.IDCLIENTE
+    , USER()
+    );
 END //
 
 DELIMITER ;

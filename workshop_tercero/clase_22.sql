@@ -55,10 +55,10 @@ COMMIT;
 
 
 -- Eliminar usuario3
-DROP USER "usuario3"@"localhost";
+DROP USER "usuario3"@"%";
 
 -- Otorgar permisos de usuario3 a usuario2
-GRANT SELECT, DELETE ON mozo_atr.* TO "usuario2"@"localhost";
+GRANT SELECT, DELETE ON mozo_atr.* TO "usuario2"@"%";
 
 
 
@@ -77,7 +77,6 @@ CREATE PROCEDURE sp_insertar_cliente(
 BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
-
         ROLLBACK;
         SELECT ">> error_message: Cliente no insertado correctamente se hace un Rollback" AS Message;
     END;
@@ -93,6 +92,7 @@ BEGIN
 
     COMMIT;
     SELECT "Cliente insertado exitosamente." AS Message;
+    SELECT * FROM CLIENTE WHERE CORREO LIKE p_correo ;
 
 END //
 
